@@ -1,11 +1,34 @@
 document.getElementById('subdomainForm').addEventListener('submit', function(event) {
   event.preventDefault();
   
-  // Get the user's subdomain URL from the input field
+  // Get the user's subdomain URL and title from the input fields
   var subdomainURL = document.getElementById('subdomainURL').value;
+  var siteTitle = document.getElementById('siteTitle').value;
 
-  // Generate the iframe HTML code with the subdomain URL
-  var iframeHTML = '<!DOCTYPE html>\n<html>\n<head>\n  <title>IPFS Mirror</title>\n</head>\n<body>\n  <iframe src="' + subdomainURL + '" style="width: 100%; height: 100%; border: none;"></iframe>\n</body>\n</html>';
+  // Generate the iframe HTML code with the subdomain URL and title
+  var iframeHTML = `<!DOCTYPE html>
+<html>
+<head>
+  <title>${siteTitle}</title>
+  <style>
+    html, body {
+      margin: 0;
+      padding: 0;
+      width: 100%;
+      height: 100%;
+      overflow: hidden;
+    }
+    iframe {
+      width: 100%;
+      height: 100%;
+      border: none;
+    }
+  </style>
+</head>
+<body>
+  <iframe src="${subdomainURL}"></iframe>
+</body>
+</html>`;
 
   // Create a Blob with the iframe HTML content
   var blob = new Blob([iframeHTML], {type: 'text/html'});
