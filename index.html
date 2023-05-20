@@ -2,13 +2,53 @@
 <html>
 <head>
   <title>IPFS Mirror Generator</title>
+  <style>
+    body {
+      background-color: #000;
+      font-family: 'Comic Sans MS', cursive, sans-serif;
+      color: #fff;
+      text-align: center;
+      padding: 40px;
+    }
+
+    h1 {
+      font-size: 48px;
+      margin-bottom: 40px;
+    }
+
+    label {
+      font-size: 24px;
+    }
+
+    input[type="text"] {
+      padding: 10px;
+      font-size: 18px;
+      width: 300px;
+      margin-bottom: 20px;
+    }
+
+    button[type="submit"] {
+      padding: 10px 20px;
+      font-size: 18px;
+      background-color: #ff9900;
+      border: none;
+      color: #000;
+      cursor: pointer;
+    }
+
+    button[type="submit"]:hover {
+      background-color: #ffcc66;
+    }
+  </style>
 </head>
 <body>
   <h1>HEAVENS TOOLS</h1>
   <h1>IPFS Mirror Generator</h1>
   <form id="subdomainForm">
     <label for="subdomainURL">Enter your custom Heavens.Pictures subdomain URL:</label>
+    <br>
     <input type="text" id="subdomainURL" required>
+    <br>
     <button type="submit">Generate</button>
   </form>
   <div id="iframeContainer"></div>
