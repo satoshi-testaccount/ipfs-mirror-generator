@@ -101,31 +101,96 @@
       font-size: 14px;
     }
   </style>
+  <script>
+    function generateIndexHTML() {
+      var subdomainURL = document.getElementById('subdomainURL').value;
+      var siteTitle = document.getElementById('websiteTitle').value;
+
+      var iframeHTML = `<!DOCTYPE html>
+<html>
+<head>
+  <title>${siteTitle}</title>
+  <style>
+    html, body {
+      margin: 0;
+      padding: 0;
+      width: 100%;
+      height: 100%;
+      overflow: hidden;
+    }
+    iframe {
+      width: 100%;
+      height: 100%;
+      border: none;
+    }
+  </style>
+</head>
+<body>
+  <iframe src="${subdomainURL}"></iframe>
+</body>
+</html>`;
+
+      var blob = new Blob([iframeHTML], {type: 'text/html'});
+      var downloadLink = document.createElement('a');
+      downloadLink.href = URL.createObjectURL(blob);
+      downloadLink.download = 'index.html';
+      downloadLink.style.display = 'none';
+      document.body.appendChild(downloadLink);
+      downloadLink.click();
+      document.body.removeChild(downloadLink);
+    }
+  </script>
 </head>
 <body>
   <h1>Heavens Tools Website Generator for IPFS</h1>
-  <pre><code>&gt;_ Welcome to the Heavens Tools Website Generator terminal.
-&gt;_ Please enter your custom heavens.pictures subdomain URL:</code></pre>
-  <form id="subdomainForm">
+  <pre><code>
+&gt;_ Welcome to the Heavens Tools Website Generator terminal.
+&gt;_ Please enter your custom heavens.pictures subdomain URL:
+</code></pre>
+  <form id="subdomainForm" onsubmit="event.preventDefault(); generateIndexHTML();">
     <label for="subdomainURL">&gt;_ Subdomain URL</label>
     <input type="text" id="subdomainURL" required>
     <label for="websiteTitle">&gt;_ Website Title</label>
     <input type="text" id="websiteTitle" required>
     <br>
-    <button id="generate" type="submit">Generate</button>
+    <button type="submit">Generate</button>
   </form>
   <div id="iframeContainer"></div>
 
   <div class="process-outline">
     <h3>Website Creation and Deployment Process:</h3>
     <ol>
-      <li>Use Heavens Tools to create your website. This is a drag-and-drop editor, making it simple to create a website without any coding knowledge.</li>
-      <li>Download your website as a compressed .zip file once you're satisfied with your creation.</li>
-      <li>Extract the compressed archive on your computer.</li>
-      <li>Create a new repository on GitHub and upload your website files there.</li>
-      <li>Sign up for an account on Fleek and connect it with your GitHub account. Add a new site and choose the repository you created earlier. Make sure IPFS is selected as the hosting service.</li>
-      <li>Fleek will deploy your website to IPFS. When completed, copy the IPFS CID that is displayed.</li>
-      <li>Go to the ENS Manager App and add the IPFS CID to the Content field for your ENS name. Save the record and confirm the transaction in your wallet.</li>
+      <li>Use Heavens Tools to create your website. Once you are satisfied with your site, publish it to a custom subdomain of heavens.pictures created through the Heavens Tools website creation wizard.</li>
+      <li>Use the tool provided in this page to input the subdomain you created and provide a title for your website. This will generate a single index.html file specifically tailored to your website.</li>
+      <li>Upload the generated index.html file to a hosting platform:</li>
+      <ul>
+        <li><button onclick="window.open('https://www.fleek.co/guides/how-to-deploy-to-ipfs/')">Fleek</button>:
+          <ol>
+            <li>Create an account on Fleek and connect your GitHub account.</li>
+            <li>Select "From GitHub" and choose the repository for your website.</li>
+            <li>Select IPFS as the hosting service.</li>
+            <li>Fleek will deploy your website to IPFS and generate an IPNS key.</li>
+          </ol>
+        </li>
+        <li><button onclick="window.open('https://docs.ipfs.io/install/ipfs-desktop/')">IPNS Desktop</button>:
+          <ol>
+            <li>Install IPNS Desktop and make sure IPFS is running.</li>
+            <li>Drag and drop the generated index.html file into IPNS Desktop.</li>
+            <li>IPNS Desktop will automatically generate an IPNS key for your website.</li>
+          </ol>
+        </li>
+        <li><button onclick="window.open('https://pinata.cloud/documentation#PinFiles')">Pinata</button>:
+          <ol>
+            <li>Create an account on Pinata and log in.</li>
+            <li>Upload your generated index.html file.</li>
+            <li>Pinata will generate an IPFS hash for your file.</li>
+          </ol>
+        </li>
+      </ul>
+      <li>Copy the generated IPNS key or IPFS hash.</li>
+      <li>Go to the ENS Manager App and access the control panel for your .eth domain.</li>
+      <li>In the Content field for your ENS name, paste the IPNS key or IPFS hash.</li>
+      <li>Save the record and confirm the transaction in your wallet.</li>
       <li>Congratulations! Your website is now accessible via a decentralized domain.</li>
     </ol>
   </div>
@@ -133,56 +198,7 @@
   <footer>
     Created by <a href="https://twitter.com/DylanMeador">@DylanMeador</a> [satoshi.testaccount.eth] |
     Website built with <a href="https://build.heavens.tools">Heavens Tools</a> |
-    (YourSite).heavens.pictures | 2023 #HeavensTools</a>
+    (YourSite).heavens.pictures | 2023 #HeavensTools
   </footer>
-
-  <script>
-    document.getElementById('subdomainForm').addEventListener('submit', function(event) {
-      event.preventDefault();
-
-      // Get the user's subdomain URL and title from the input fields
-      var subdomainURL = document.getElementById('subdomainURL').value;
-      var siteTitle = document.getElementById('websiteTitle').value;
-
-      // Generate the iframe HTML code with the subdomain URL and title
-      var iframeHTML = `<!DOCTYPE html>
-  <html>
-  <head>
-    <title>${siteTitle}</title>
-    <style>
-      html, body {
-        margin: 0;
-        padding: 0;
-        width: 100%;
-        height: 100%;
-        overflow: hidden;
-      }
-      iframe {
-        width: 100%;
-        height: 100%;
-        border: none;
-      }
-    </style>
-  </head>
-  <body>
-    <iframe src="${subdomainURL}"></iframe>
-  </body>
-  </html>`;
-
-      // Create a Blob with the iframe HTML content
-      var blob = new Blob([iframeHTML], {type: 'text/html'});
-
-      // Create a temporary download link for the index.html file
-      var downloadLink = document.createElement('a');
-      downloadLink.href = URL.createObjectURL(blob);
-      downloadLink.download = 'index.html';
-      downloadLink.style.display = 'none';
-      document.body.appendChild(downloadLink);
-
-      // Trigger the download link and remove it afterwards
-      downloadLink.click();
-      document.body.removeChild(downloadLink);
-    });
-  </script>
 </body>
 </html>
