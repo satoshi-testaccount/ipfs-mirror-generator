@@ -2,7 +2,7 @@
 <html>
 <head>
   <title>Heavens Tools Website Generator for IPFS</title>
-<style>
+  <style>
     body {
       background-color: #000000;
       font-family: 'Courier New', monospace;
@@ -100,6 +100,9 @@
       color: #cccccc;
       font-size: 14px;
     }
+    .guide-title {
+      text-align: center;
+    }
   </style>
   <script>
     function generateIndexHTML() {
@@ -161,10 +164,11 @@
     <h3>Website Creation and Deployment Process:</h3>
     <ol>
       <li>Use Heavens Tools to create your website. Once you are satisfied with your site, publish it to a custom subdomain of heavens.pictures created through the Heavens Tools website creation wizard.</li>
-      <li>Use the tool provided in this page to input the subdomain you created and provide a title for your website. This will generate a single index.html file specifically tailored to your website.</li>
+      <li>Use the tool provided on this page to input the subdomain you created and provide a title for your website. This will generate a single index.html file specifically tailored to your website.</li>
       <li>Upload the generated index.html file to a hosting platform:</li>
       <ul>
-        <li><button onclick="window.open('https://www.fleek.co/guides/how-to-deploy-to-ipfs/')">Fleek</button>:
+        <li>
+          <h4 class="guide-title">Fleek:</h4>
           <ol>
             <li>Create an account on Fleek and connect your GitHub account.</li>
             <li>Select "From GitHub" and choose the repository for your website.</li>
@@ -172,14 +176,16 @@
             <li>Fleek will deploy your website to IPFS and generate an IPNS key.</li>
           </ol>
         </li>
-        <li><button onclick="window.open('https://docs.ipfs.io/install/ipfs-desktop/')">IPNS Desktop</button>:
+        <li>
+          <h4 class="guide-title">IPNS Desktop:</h4>
           <ol>
             <li>Install IPNS Desktop and make sure IPFS is running.</li>
             <li>Drag and drop the generated index.html file into IPNS Desktop.</li>
             <li>IPNS Desktop will automatically generate an IPNS key for your website.</li>
           </ol>
         </li>
-        <li><button onclick="window.open('https://pinata.cloud/documentation#PinFiles')">Pinata</button>:
+        <li>
+          <h4 class="guide-title">Pinata:</h4>
           <ol>
             <li>Create an account on Pinata and log in.</li>
             <li>Upload your generated index.html file.</li>
