@@ -32,6 +32,8 @@
       border: none;
       background-color: #000000;
       color: #00ff00;
+      box-shadow: 0 0 5px #00ff00;
+      outline: none;
     }
 
     button[type="submit"] {
@@ -48,6 +50,56 @@
       background-color: #00ff00;
       color: #000000;
     }
+
+    .process-outline {
+      text-align: left;
+      margin-top: 40px;
+      color: #cccccc;
+      font-size: 14px;
+    }
+
+    .process-outline ol {
+      padding-left: 20px;
+    }
+
+    .process-outline li {
+      margin-bottom: 10px;
+    }
+    
+    /* Terminal Style */
+    pre {
+      text-align: left;
+      margin: 40px auto;
+      padding: 20px;
+      border: 2px solid #00ff00;
+      background-color: #000000;
+      overflow: auto;
+      width: 500px;
+      height: 200px;
+      font-size: 16px;
+      line-height: 1.5;
+    }
+
+    code {
+      color: #00ff00;
+    }
+
+    /* Links */
+    a {
+      color: #00ff00;
+      text-decoration: none;
+    }
+
+    a:hover {
+      text-decoration: underline;
+    }
+
+    /* Footer */
+    footer {
+      margin-top: 40px;
+      color: #cccccc;
+      font-size: 14px;
+    }
   </style>
 </head>
 <body>
@@ -61,6 +113,22 @@
     <button type="submit">Generate</button>
   </form>
   <div id="iframeContainer"></div>
+
+  <div class="process-outline">
+    <h3>Usage Process:</h3>
+    <ol>
+      <li>Upload the generated index.html file to IPFS using IPFS command line tools or web interfaces like <a href="https://pinata.cloud">Pinata</a> or <a href="https://ipfs.io/ipfs-upload/">IPFS Upload</a>.</li>
+      <li>Obtain the IPFS CID of the uploaded index.html file.</li>
+      <li>Create an IPNS record pointing to the IPFS CID using IPFS command line tools or web interfaces like <a href="https://cloudflare-ipfs.com/">Cloudflare IPFS Gateway</a>.</li>
+      <li>Configure the ENS (.eth) domain to use the IPNS record as the content address through services like <a href="https://app.ens.domains">ENS Manager</a>.</li>
+    </ol>
+  </div>
+
+  <footer>
+    Created by <a href="https://twitter.com/DylanMeador">@DylanMeador</a> |
+    Website built with <a href="https://build.heavens.tools">Heavens Tools</a> |
+    <a href="https://heavens.pictures">heavens.pictures</a>
+  </footer>
 
   <script src="script.js"></script>
 </body>
